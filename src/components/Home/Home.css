@@ -1,0 +1,31 @@
+.header {
+    width: 100%;
+    height: 100hv;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(181, 190, 207);
+  }
+  .main-wrapper{
+    width: 100%;
+    height: 100hv;
+    display: flex;
+    align-items: center;
+  }
+  .wrap1{
+    width: 80%;
+    height: 100hv;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 10px;
+  }
+  .wrap2{
+    width: 20%;
+    height: 100hv;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 10px;
+  }
+  .wrap-input{
+    margin: 10px;
+  }
