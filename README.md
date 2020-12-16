@@ -2,4 +2,6 @@
           
           ![Image alt](https://github.com/{fobos78}/{react-flow-rerenderer-test}/raw/{master}/{public/img}/1.png. 
           ![Screenshot](1.png)
+          ![Optional Text](../master/1.png). 
+          
           
