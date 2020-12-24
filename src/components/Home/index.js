@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import ThemeContext from '../../context';
 import ReactFlow, {
   addEdge,
   Background,
@@ -9,25 +10,27 @@ import ReactFlow, {
 
 import "./Home.css";
 
-const initialElements = [
-  { id: "1", type: "input", data: { label: "А" }, position: { x: 0, y: 0 } },
-  { id: "2", data: { label: "Г" }, position: { x: 50, y: 50 } },
-  {
-    id: "3",
-    type: "output", // выходной узел
-    data: { label: "Е" },
-    position: { x: 100, y: 100 },
-  },
-  { id: "e1-2", source: "1", target: "2" },
-  { id: "e2-3", source: "2", target: "3" },
-];
+// const initialtheme = [
+//   { id: "1", type: "input", data: { label: "А" }, position: { x: 0, y: 0 } },
+//   { id: "2", data: { label: "Г" }, position: { x: 50, y: 50 } },
+//   {
+//     id: "3",
+//     type: "output", // выходной узел
+//     data: { label: "Е" },
+//     position: { x: 100, y: 100 },
+//   },
+//   { id: "e1-2", source: "1", target: "2" },
+//   { id: "e2-3", source: "2", target: "3" },
+// ];
 
 const MindNode = ({ setNavBg }) => {
+  const { theme, setTheme } = useContext(ThemeContext);
+  console.log('theme', theme);
   useEffect(() => {
     setNavBg({ home: true, mybody: false });
   }, [setNavBg]);
 
-  const [elements, setElements] = useState(initialElements);
+  // const [theme, settheme] = useState(theme);
   const [elementClick, setElementClick] = useState("А");//выбраный элемент
   const [quantityEdgeOut, setQuantityEdgeOut] = useState([]); // исходящии ребра
   const [quantityEdgeIn, setQuantityEdgeIn] = useState([]); // входящие ребра
@@ -35,7 +38,7 @@ const MindNode = ({ setNavBg }) => {
   const [name, setName] = useState("");
   function addNode() { // добавление нового узла (города)
     console.log(name);
-    setElements((prev) => 
+    setTheme((prev) => 
       prev.concat({
         id: (prev.length + 1).toString(),
         data: { label: `${name}` },
@@ -56,8 +59,8 @@ const MindNode = ({ setNavBg }) => {
         if (el.source === "1") {
           count++;
         } else {
-          const node = elements.find((item) => item.id === el.source);
-          const arrQuantityEdgeIn = elements.filter(
+          const node = theme.find((item) => item.id === el.source);
+          const arrQuantityEdgeIn = theme.filter(
             (el) => el.target === node.id
           );
           quant(arrQuantityEdgeIn); // передаем массив входящих ребер предедущего узла
@@ -71,10 +74,10 @@ const MindNode = ({ setNavBg }) => {
         ? element.data.label
         : `${element.source} - ${element.target}`
     );
-    const arrQuantityEdgeOut = elements.filter(
+    const arrQuantityEdgeOut = theme.filter(
       (el) => el.source === element.id
     );
-    const arrQuantityEdgeIn = elements.filter((el) => el.target === element.id);
+    const arrQuantityEdgeIn = theme.filter((el) => el.target === element.id);
     setQuantityEdgeOut(arrQuantityEdgeOut);
     setQuantityEdgeIn(arrQuantityEdgeIn);
     if (element.type === "input") {
@@ -83,14 +86,14 @@ const MindNode = ({ setNavBg }) => {
       setQuantityWays(quant(arrQuantityEdgeIn));
     }
   };
-  const onElementsRemove = (elementsToRemove) =>
-    setElements((els) => removeElements(elementsToRemove, els));
+  const onthemeRemove = (themeToRemove) =>
+    setTheme((els) => removeElements(themeToRemove, els));
   const onLoad = (reactFlowInstsnce) => {
     reactFlowInstsnce.fitView();
     console.log("reactFlowInstsnce", reactFlowInstsnce);
   };
   const onConnect = (params) => {
-    setElements((e) => addEdge(params, e));
+    setTheme((e) => addEdge(params, e));
     console.log("params", params);
   };
   return (
@@ -99,10 +102,10 @@ const MindNode = ({ setNavBg }) => {
         <div className="wrap1">
           <ReactFlow
             deleteKeyCode={46}
-            elements={elements}
+            elements={theme}
             onLoad={onLoad}
             style={{ width: "100%", height: 600 }}
-            onElementsRemove={onElementsRemove}
+            onthemeRemove={onthemeRemove}
             onElementClick={onElementClick}
             onConnect={onConnect}
             connectionLineStyle={{ stroke: "#ddd", strokeWidth: 2 }}
