@@ -5,8 +5,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 }
-p {
+.myBody_p {
   width: 50%;
   height: 100hv;
   display: flex;

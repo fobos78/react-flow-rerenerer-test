@@ -22,6 +22,7 @@
   .wrap2{
     width: 20%;
     height: 100hv;
+    padding: 15px;
     border: 1px solid black;
     border-radius: 5px;
     margin: 10px;

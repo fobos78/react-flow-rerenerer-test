@@ -25,7 +25,7 @@ import "./Home.css";
 
 const MindNode = ({ setNavBg }) => {
   const { theme, setTheme } = useContext(ThemeContext);
-  console.log('theme', theme);
+  // console.log('theme', theme);
   useEffect(() => {
     setNavBg({ home: true, mybody: false });
   }, [setNavBg]);
@@ -101,11 +101,11 @@ const MindNode = ({ setNavBg }) => {
       <div className="main-wrapper">
         <div className="wrap1">
           <ReactFlow
-            deleteKeyCode={46}
+            deleteKeyCode={8}
             elements={theme}
             onLoad={onLoad}
             style={{ width: "100%", height: 600 }}
-            onthemeRemove={onthemeRemove}
+            onElementsRemove={onthemeRemove}
             onElementClick={onElementClick}
             onConnect={onConnect}
             connectionLineStyle={{ stroke: "#ddd", strokeWidth: 2 }}
